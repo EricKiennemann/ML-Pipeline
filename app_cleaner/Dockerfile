@@ -1,5 +1,4 @@
-from python:3
+FROM python:3
 
-copy src /app
-workdir /app
-
+COPY src /app
+WORKDIR /app

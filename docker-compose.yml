@@ -1,0 +1,10 @@
+version: '3'
+services:
+
+  cleaner:
+    build: ./app_cleaner
+    image: app_cleaner
+    volumes:
+      - ./raw_data:/input_data
+      - ./clean_data:/output_data
+
