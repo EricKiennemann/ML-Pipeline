@@ -8,3 +8,20 @@ services:
       - ./raw_data:/input_data
       - ./clean_data:/output_data
 
+  model:
+    build: ./app_model
+    image: app_model
+    volumes:
+      - ./clean_data:/input_data
+      - ./model_data:/output_data
+
+  mlflow:
+    build: ./app_mlflow   
+    image: app_mlflow
+    volumes:
+      - ./model_data:/input_data
+      - ./mlflow_data:/output_data
+
+
+
+
