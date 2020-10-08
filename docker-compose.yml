@@ -7,6 +7,7 @@ services:
     volumes:
       - ./raw_data:/input_data
       - ./clean_data:/output_data
+      - ./mlflow_data:/mlruns
 
   model:
     build: ./app_model
@@ -14,13 +15,14 @@ services:
     volumes:
       - ./clean_data:/input_data
       - ./model_data:/output_data
+      - ./mlflow_data:/mlruns
 
   mlflow:
     build: ./app_mlflow   
     image: app_mlflow
     volumes:
       - ./model_data:/input_data
-      - ./mlflow_data:/output_data
+      - ./mlflow_data:/mlruns
 
 
 
