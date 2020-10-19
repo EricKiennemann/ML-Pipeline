@@ -38,6 +38,7 @@ class TestFormat(unittest.TestCase):
 
         output = format.normalizeFields(input)
         self.assertEqual(output["Installs"].values[0], 500000)
+        self.assertEqual(output["Size"].values[0], 14*1024)
 
 
 
