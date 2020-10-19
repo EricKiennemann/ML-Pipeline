@@ -7,7 +7,7 @@ services:
     volumes:
       - ./raw_data:/input_data
       - ./clean_data:/output_data
-      - ./mlflow_data:/mlruns
+      - ./mlflow_data:/app/mlruns
 
   model:
     build: ./app_model
@@ -15,15 +15,18 @@ services:
     volumes:
       - ./clean_data:/input_data
       - ./model_data:/output_data
-      - ./mlflow_data:/mlruns
+      - ./mlflow_data:/mlflow_data
 
   mlflow:
     build: ./app_mlflow   
     image: app_mlflow
     volumes:
       - ./model_data:/input_data
-      - ./mlflow_data:/mlruns
-
+      - ./mlflow_data:/mlflow_data
+    expose:
+      - "5000"
+    command: mlflow server --backend-store-uri /mlflow_data/log --host 127.0.0.1
+ 
 
 
 
